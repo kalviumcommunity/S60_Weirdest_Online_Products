@@ -1,0 +1,12 @@
+{
+  "name": "s60_weirdest_online_products",
+  "version": "1.0.0",
+  "description": "Lightup Chopsticks\r ![Lightup chopsticks](https://m.media-amazon.com/images/I/81ABckNfDjL._AC_SL1500_.jpg)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
