@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Weirdest online produts",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
