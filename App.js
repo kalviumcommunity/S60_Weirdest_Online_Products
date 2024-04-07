@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 const Data = require("./Data")
 
+function app(){
 mongoose.connect("mongodb+srv://sahanashrev:Sahusasdi23@cluster0.agvrvhv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 .then(()=>{
     console.log("It is connected")
@@ -8,6 +9,7 @@ mongoose.connect("mongodb+srv://sahanashrev:Sahusasdi23@cluster0.agvrvhv.mongodb
 .catch((error)=>{
     console.log("Error is",error)
 })
+}
 
 const mongooseSchema = mongoose.Schema({
     Product: String,
@@ -20,4 +22,4 @@ const mongooseSchema = mongoose.Schema({
 
 const model = mongoose.model("user",mongooseSchema)
 
-module.exports = model
+module.exports = {model:model, connection:app}
