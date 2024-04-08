@@ -1,14 +1,15 @@
 const express = require("express")
 const app = express()
-const mongoose = require("mongoose")
-const dotenv = require("dotenv")
-dotenv.config()
 
 app.get("/ping",(req,res) =>{
-    res.send("pong")
+    // res.send("pong")
+    const DataCall = Data()
+    let Check = DataCall? "Connected" : "Not connected"
+    res.send(Check)
 })
 
 app.listen(3000,()=>{
+    connection()
     console.log("This is local host 3000")
 })
 
