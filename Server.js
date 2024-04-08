@@ -7,7 +7,7 @@ const{connection,model}=require("./App")
 
 function Data(){
     return model.db.readyState===1;
-
+}
 app.get("/ping",(req,res) =>{
     // res.send("pong")
     const DataCall = Data()
