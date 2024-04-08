@@ -14,5 +14,9 @@ Lightup Chopsticks
 Finger Pens
  ![Pen](https://img.buzzfeed.com/buzzfeed-static/static/2023-08/8/11/asset/72e4e3c81056/sub-buzz-1053-1691494176-1.jpg?downsize=600:*&output-format=auto&output-quality=auto)
  
- Deployed Link
+ Deployed Link backend
  (https://s60-weirdest-online-products-2.onrender.com/ping)
+
+
+Deployed Link frontend
+(https://6613bf09daf78d8050a2421f--thunderous-brioche-21108b.netlify.app/)
