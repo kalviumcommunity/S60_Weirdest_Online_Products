@@ -1,10 +1,12 @@
 const express = require("express")
 const app = express()
+const route = require("./Route")
+
+app.use("/",route)
 const{connection,model}=require("./App")
 
 function Data(){
     return model.db.readyState===1;
-}
 
 app.get("/ping",(req,res) =>{
     // res.send("pong")
