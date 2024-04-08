@@ -1,10 +1,5 @@
 const express = require("express")
 const app = express()
-const {model,connection} = require("./App")
-
-function Data(){
-    return model.db.readyState === 1
-}
 
 app.get("/ping",(req,res) =>{
     // res.send("pong")
@@ -17,3 +12,15 @@ app.listen(3000,()=>{
     connection()
     console.log("This is local host 3000")
 })
+
+const Database = async ()  => {
+    try{
+        await mongoose.connect(process.env.Database)
+        console.log("Connected to Database")
+    }
+    catch (error){
+        console.log(error.message)
+    }
+}
+
+Database()
