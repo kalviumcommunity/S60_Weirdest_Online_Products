@@ -1,5 +1,6 @@
 import axios from "axios";
 import {useState,useEffect} from "react";
+import { Link } from "react-router-dom";
 
 function FetchData(){
 
@@ -20,6 +21,10 @@ function FetchData(){
 
     return(
         <div>
+            <Link to="/addprod">
+            <button>Add</button>
+            </Link>
+        <div>
          {
             state.map((ele,id)=>{
                 return(
@@ -35,6 +40,8 @@ function FetchData(){
             })
          }
         </div>
+        </div>
+        
     )
 }
 
