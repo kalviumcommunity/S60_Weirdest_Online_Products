@@ -16,7 +16,13 @@ app.get("/get",(req,res)=>{
 })
 
 app.post("/post",(req,res)=>{
-    res.send("Post is successful")
+    model.create(req.body)
+    .then((ele)=>{
+        res.json(ele)
+    })
+    .catch((err)=>{
+        res.json(err)
+    })
 })
 
 app.put("/put/:key",(req,res)=>{
