@@ -1,5 +1,15 @@
 const express = require("express")
 const app = express()
+const {model} = require("./App")
+app.get("/get",(req,res)=>{
+    model.find({})
+    .then((ele)=>{
+        res.json({ele})
+    })
+    .catch((err)=>{
+        res.json({err})
+    })
+})
 
 app.get("/get",(req,res)=>{
     res.send("Get is successful")
