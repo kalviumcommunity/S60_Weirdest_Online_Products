@@ -6,6 +6,15 @@ function FetchData(){
 
     const[state,setState]=useState([]);
 
+    const Delete = async(key)=>{
+        try{
+            await axios.delete(`http://localhost:3000/delete/${key}`)
+            location.reload()
+        }catch(err){
+            console.log(err)
+        }
+    }
+
     useEffect(()=>{
      const getdata= async()=>{
         try{
@@ -24,6 +33,7 @@ function FetchData(){
             <Link to="/addprod">
             <button>Add</button>
             </Link>
+
         <div>
          {
             state.map((ele,id)=>{
@@ -35,6 +45,8 @@ function FetchData(){
     <p>Price: {ele.Price}</p>
 <img src={ele.Image_Link} alt="" height="400px" width="400px"/>
     <p>Product_Details: {ele.Product_Details}</p>
+    <button onClick={()=>{Delete(ele._id)}}>Delete</button>
+    <Link to={`/put/${ele._id}`}><button>Update</button></Link>
                 </div>
                 )
             })
