@@ -26,11 +26,22 @@ app.post("/post",(req,res)=>{
 })
 
 app.put("/put/:key",(req,res)=>{
-    res.send("Update is successful")
+    const key = req.params.key;
+    model.findByIdAndUpdate(key,{
+        Product: req.body.Product,
+    Customer_Ratings: req.body.Customer_Ratings,
+    Number_of_buyers_last_month: req.body.Number_of_buyers_last_month,
+    Price: req.body.Price,
+    Image_Link: req.body.Image_Link,
+    Product_Details: req.body.Product_Details
+    }).then(()=>{res.send("done")})
 })
 
 app.delete("/delete/:key",(req,res)=>{
-    res.send("Delete is successful")
+    const key = req.params.key;
+    model.findByIdAndDelete(key)
+    .then(ele => res.json(ele))
+    .catch(err => res.json(err))
 })
 
 module.exports = app
