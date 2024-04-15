@@ -1,6 +1,8 @@
 const express = require("express")
 const app = express()
 const {model} = require("./App")
+const joiSchema = require("./joiSchema")
+
 app.get("/get",(req,res)=>{
     model.find({})
     .then((ele)=>{
@@ -16,6 +18,14 @@ app.get("/get",(req,res)=>{
 })
 
 app.post("/post",(req,res)=>{
+    const {error,value} = joiSchema.validate(req.body)
+    if(error){
+        res.json({message:"Invalid inputs entered",error:error.message})
+    }
+    else {
+        res.json({ message: "Valid inputs", data: value });
+    }
+
     model.create(req.body)
     .then((ele)=>{
         res.json(ele)
@@ -28,7 +38,7 @@ app.post("/post",(req,res)=>{
 app.put("/put/:key",(req,res)=>{
     const key = req.params.key;
     model.findByIdAndUpdate(key,{
-        Product: req.body.Product,
+    Product: req.body.Product,
     Customer_Ratings: req.body.Customer_Ratings,
     Number_of_buyers_last_month: req.body.Number_of_buyers_last_month,
     Price: req.body.Price,
