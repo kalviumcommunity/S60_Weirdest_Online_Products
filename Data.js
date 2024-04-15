@@ -73,7 +73,7 @@ const datas = [
 },
 {
     Product: "Anatomy Bathing Suit",
-    Customer_Rating: "4.5 / 5",
+    Customer_Ratings: "4.5 / 5",
     Number_of_buyers_last_month: 270,
     Price: "$8.90",
     Image_Link: "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1671122706-screen-shot-2022-12-15-at-11-42-36-am-1671122579.png?crop=1xw:0.96900826446281xh;center,top&resize=980:*",
