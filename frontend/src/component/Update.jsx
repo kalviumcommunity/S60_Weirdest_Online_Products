@@ -42,7 +42,7 @@ function UpdateForm(){
          event.preventDefault();
          axios.put("http://localhost:3000/put/"+key,{Product,Customer_Ratings,Number_of_buyers_last_month,Price,Product_Details,Image_Link})
          .then(()=>{console.log("Updated")
-          Navigate("/")})
+          Navigate("/product")})
          .catch(error =>console.log(error))
       }
     return(

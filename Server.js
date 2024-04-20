@@ -19,6 +19,7 @@ app.get("/ping",(req,res) =>{
 })
 
 app.listen(3000,()=>{
+
     connection()
     console.log("This is local host 3000")
 })

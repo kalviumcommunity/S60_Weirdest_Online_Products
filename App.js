@@ -22,4 +22,12 @@ const mongooseSchema = mongoose.Schema({
 
 const model = mongoose.model("user",mongooseSchema)
 
-module.exports = {model:model, connection:app}
+const userSchema = mongoose.Schema({
+    username :  String,
+    email : String,
+    password : String
+})
+
+const userModel = mongoose.model("userlogin",userSchema)
+
+module.exports = {model:model, connection:app, userModel:userModel}
