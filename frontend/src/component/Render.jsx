@@ -21,10 +21,27 @@ function FetchData() {
     }
   };
 
+  const getCookie = (name) => {
+    const cookies = document.cookie.split('; ');
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].split('=');
+      if (cookie[0] === name) {
+        return cookie[1];
+      }
+    }
+    return null;
+  };
+
   useEffect(() => {
     const getdata = async () => {
       try {
-        const fetchData = await axios.get("http://localhost:3000/get");
+        const token = getCookie("access_token")
+        const fetchData = await axios.get("http://localhost:3000/get",{
+            headers: {
+                "Authorization" : `Bearer ${token}`,
+                "Content-Type": "application/json"
+            }
+        })
         console.log(fetchData.data.ele);
         setState(fetchData.data.ele);
       } catch (error) {

@@ -2,8 +2,26 @@ const express = require("express")
 const app = express()
 const {model, userModel} = require("./App")
 const joiSchema = require("./joiSchema")
+const jwt = require("jsonwebtoken")
+const env = require("dotenv").config()
 
-app.get("/get",(req,res)=>{
+const AuthenticateToken = (req,res,next) => {
+    const authHeader = req.headers["authorization"]
+    const token = authHeader && authHeader.split(" ")[1]
+    if(!token){
+        return res.sendStatus(401)
+    }
+
+    jwt.verify(token,process.env.ACCESS_KEY,(err,user)=>{
+        if(err){
+            return res.sendStatus(403)
+        }
+        req.user = user
+        next()
+    })
+}
+
+app.get("/get",AuthenticateToken,(req,res)=>{
     model.find({})
     .then((ele)=>{
         res.json({ele})
@@ -11,10 +29,6 @@ app.get("/get",(req,res)=>{
     .catch((err)=>{
         res.json({err})
     })
-})
-
-app.get("/get",(req,res)=>{
-    res.send("Get is successful")
 })
 
 app.post("/post",(req,res)=>{
@@ -43,7 +57,7 @@ app.put("/put/:key",(req,res)=>{
     Number_of_buyers_last_month: req.body.Number_of_buyers_last_month,
     Price: req.body.Price,
     Image_Link: req.body.Image_Link,
-    Product_Details: req.body.Product_Details
+    Product_Details: req .body.Product_Details
     }).then(()=>{res.send("done")})
 })
 
@@ -82,14 +96,18 @@ app.post("/login", (req, res) => {
     .then(user => {
         if(user){
             if(user.password === password){
-                res.status(200).json({message: "Login successful"})
-            }else{
+                // res.status(200).json({message: "Login successful"})
+                const user = {name : username}
+                const accessToken =jwt.sign(user,process.env.ACCESS_KEY)
+                res.json({accessToken})
+            }
+            else{
                 res.status(400).json({message: "Details given by the user did not match"})
                 
             }
-        }else{
+        }
+        else{
             res.status(400).json({message: "User doesn't exist. Kindly register"})
-       
         }
     })
 })
