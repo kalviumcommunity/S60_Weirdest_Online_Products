@@ -5,9 +5,11 @@ const joiSchema = require("./joiSchema")
 const jwt = require("jsonwebtoken")
 const env = require("dotenv").config()
 
+//AuthenticateToken acts as a middleware
 const AuthenticateToken = (req,res,next) => {
     const authHeader = req.headers["authorization"]
     const token = authHeader && authHeader.split(" ")[1]
+    console.log(token)
     if(!token){
         return res.sendStatus(401)
     }
@@ -22,13 +24,28 @@ const AuthenticateToken = (req,res,next) => {
 }
 
 app.get("/get",AuthenticateToken,(req,res)=>{
-    model.find({})
-    .then((ele)=>{
-        res.json({ele})
-    })
-    .catch((err)=>{
-        res.json({err})
-    })
+    const {id} = req.query
+    console.log(id)
+    if(id){
+        model.find({Created_By:id})
+        .then((ele)=>{
+            console.log(ele)
+            res.json({ele})
+        })
+        .catch((err)=>{
+            console.log(err)
+            res.json({err})
+        })
+    }
+    else{
+        model.find({})
+        .then((ele)=>{
+            res.json({ele})
+        })
+        .catch((err)=>{
+            res.json({err})
+        })
+    }
 })
 
 app.post("/post",(req,res)=>{
@@ -110,6 +127,17 @@ app.post("/login", (req, res) => {
             res.status(400).json({message: "User doesn't exist. Kindly register"})
         }
     })
+})
+
+app.get("/user",AuthenticateToken,(req,res)=>{
+    console.log("getuser")
+    userModel.find({})
+    .then((user)=>{
+        console.log(user)
+        res.send(user)
+    })
+    .catch((err)=>err.message)
+
 })
 
 module.exports = app

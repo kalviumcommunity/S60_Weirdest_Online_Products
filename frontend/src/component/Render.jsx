@@ -4,11 +4,24 @@ import { Link, useNavigate } from "react-router-dom";
 
 function FetchData() {
   const [state, setState] = useState([]);
+  const [user,setUser] = useState([]);
 
   const Navigate = useNavigate();
 
+  const handleClick = (event) => {
+    const id = event.target.value;
+    // console.log(id)
+    if (id) {
+      getdata(id)
+    }
+    else {
+      getdata();
+    }
+  };
+  
   const Logout = () => {
     document.cookie = `username=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;`;
+    document.cookie = `access_token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;`;
     Navigate("/login");
   };
 
@@ -32,22 +45,43 @@ function FetchData() {
     return null;
   };
 
+  const getdata = async (id) => {
+    try {
+      const token = getCookie("access_token")
+      const fetchData = await axios.get(`http://localhost:3000/get`,{
+          headers: {
+              "Authorization" : `Bearer ${token}`,
+              "Content-Type": "application/json"
+          },
+          params: {
+            "id": id
+          }
+      })
+      console.log(fetchData.data.ele);
+      setState(fetchData.data.ele);
+    } catch (error) {
+      console.error("Error is :", error);
+    }
+  };
+
+  const getUser = async () => {
+    try {
+      const token = getCookie("access_token")
+      const fetchData = await axios.get("http://localhost:3000/user",{
+          headers: {
+              "Authorization" : `Bearer ${token}`,
+              "Content-Type": "application/json"
+          }
+      })
+      console.log(fetchData.data)
+      setUser(fetchData.data);
+    } catch (error) {
+      console.error("Error is :", error);
+    }
+  };
+
   useEffect(() => {
-    const getdata = async () => {
-      try {
-        const token = getCookie("access_token")
-        const fetchData = await axios.get("http://localhost:3000/get",{
-            headers: {
-                "Authorization" : `Bearer ${token}`,
-                "Content-Type": "application/json"
-            }
-        })
-        console.log(fetchData.data.ele);
-        setState(fetchData.data.ele);
-      } catch (error) {
-        console.error("Error is :", error);
-      }
-    };
+    getUser();
     getdata();
   }, []);
 
@@ -58,6 +92,17 @@ function FetchData() {
       </Link>
 
       <div>
+      <select name="User Identification" onChange={handleClick} style={{ width: '100px', height: '30px', fontSize: '15px' }}>
+        <option value="">Select User</option>
+        {
+          user.map((ele,ind) => {
+            return(
+                <option value={ele._id} key={ind}>{ele.username}</option>
+            )
+          })
+        }
+         </select>
+
         {state.map((ele, id) => {
           return (
             <div key={id}>
