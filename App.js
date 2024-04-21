@@ -17,7 +17,8 @@ const mongooseSchema = mongoose.Schema({
     Number_of_buyers_last_month: Number,
     Price: String,
     Image_Link: String,
-    Product_Details: String
+    Product_Details: String,
+    Created_By: String
 })
 
 const model = mongoose.model("user",mongooseSchema)
@@ -29,5 +30,6 @@ const userSchema = mongoose.Schema({
 })
 
 const userModel = mongoose.model("userlogin",userSchema)
+// model.insertMany(Data)
 
 module.exports = {model:model, connection:app, userModel:userModel}

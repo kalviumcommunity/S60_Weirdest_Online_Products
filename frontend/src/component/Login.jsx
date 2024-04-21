@@ -26,7 +26,7 @@ function Login(){
         .then(response =>{
             if(response.status === 200){
                 Navigate("/product")
-                // document.cookie = `username=${username}`;
+                document.cookie = `username=${username}`;
                 document.cookie = `access_token=${response.data["accessToken"]}`
                 console.log(response.data)
             }
