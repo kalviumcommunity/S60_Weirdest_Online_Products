@@ -130,7 +130,7 @@ button:hover{
   gap:30px;
 }
 
-/* Mobile responsive */
+/* Mobile responsive code */
 
 @media screen and (min-width: 320px) and (max-width: 500px){
   .inpbox{
