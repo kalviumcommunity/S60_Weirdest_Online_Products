@@ -55,7 +55,7 @@ function Form() {
 
     axios
       .post(
-        "http://localhost:3000/post",
+        "https://s60-weirdest-online-products-2.onrender.com/post",
         {
           Product,
           Customer_Ratings,
