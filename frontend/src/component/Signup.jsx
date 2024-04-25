@@ -25,7 +25,7 @@ function Signup(){
 
     const Submit = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:3000/signup", { username, email, password })
+        axios.post("https://s60-weirdest-online-products-2.onrender.com/signup", { username, email, password })
             .then((res) => {
                 if (res.data.message === "User with this email already exist") {
                     setErr("User with this email already exists");

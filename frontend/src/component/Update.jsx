@@ -41,7 +41,7 @@ function UpdateForm(){
 
       function Submit(event){
          event.preventDefault();
-         axios.put("http://localhost:3000/put/"+key,{Product,Customer_Ratings,Number_of_buyers_last_month,Price,Product_Details,Image_Link})
+         axios.put("https://s60-weirdest-online-products-2.onrender.com/put/"+key,{Product,Customer_Ratings,Number_of_buyers_last_month,Price,Product_Details,Image_Link})
          .then(()=>{console.log("Updated")
           Navigate("/product")})
          .catch(error =>console.log(error))

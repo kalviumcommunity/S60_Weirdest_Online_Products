@@ -23,7 +23,7 @@ function Login(){
 
     const Submit = (e) =>{
         e.preventDefault()
-        axios.post("http://localhost:3000/login",{username,password})
+        axios.post("https://s60-weirdest-online-products-2.onrender.com/login",{username,password})
         .then(response =>{
             if(response.status === 200){
                 Navigate("/product")

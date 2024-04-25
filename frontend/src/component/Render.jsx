@@ -28,7 +28,7 @@ function FetchData() {
 
   const Delete = async (key) => {
     try {
-      await axios.delete(`http://localhost:3000/delete/${key}`);
+      await axios.delete(`https://s60-weirdest-online-products-2.onrender.com/${key}`);
       location.reload();
     } catch (err) {
       console.log(err);
@@ -49,7 +49,7 @@ function FetchData() {
   const getdata = async (id) => {
     try {
       const token = getCookie("access_token")
-      const fetchData = await axios.get(`http://localhost:3000/get`,{
+      const fetchData = await axios.get(`https://s60-weirdest-online-products-2.onrender.com/get`,{
           headers: {
               "Authorization" : `Bearer ${token}`,
               "Content-Type": "application/json"
@@ -68,7 +68,7 @@ function FetchData() {
   const getUser = async () => {
     try {
       const token = getCookie("access_token")
-      const fetchData = await axios.get("http://localhost:3000/user",{
+      const fetchData = await axios.get("https://s60-weirdest-online-products-2.onrender.com/user",{
           headers: {
               "Authorization" : `Bearer ${token}`,
               "Content-Type": "application/json"
