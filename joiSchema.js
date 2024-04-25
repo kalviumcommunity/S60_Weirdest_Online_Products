@@ -7,7 +7,6 @@ const joiSchema = joi.object({
     Price: joi.string().required(),
     Image_Link:joi.string().uri().required(),
     Product_Details:joi.string().required(),
-    Created_By:joi.string().required()
 })
 
 module.exports = joiSchema

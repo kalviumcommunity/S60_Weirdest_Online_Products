@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "../App.css"
 
 function FetchData() {
   const [state, setState] = useState([]);
@@ -87,25 +88,32 @@ function FetchData() {
 
   return (
     <div>
-      <Link to="/addprod">
+      <div className="buttons">
+        <div>
+        <Link to="/addprod">
         <button>Add</button>
       </Link>
+        </div>
+      <div>
+      <button onClick={Logout} className="logout">Log Out</button>
+      </div>
+      </div>
 
       <div>
-      <select name="User Identification" onChange={handleClick} style={{ width: '100px', height: '30px', fontSize: '15px' }}>
-        <option value="">Select User</option>
+      <select name="User Identification" onChange={handleClick} className="dropdown" style={{ width: '100px', height: '30px', fontSize: '15px' }}>
+        <option value="" style={{fontSize: "15px", color:"black"}}>Select User</option>
         {
           user.map((ele,ind) => {
             return(
-                <option value={ele._id} key={ind}>{ele.username}</option>
+                <option value={ele._id} key={ind} className="optns" style={{fontSize: "15px"}}>{ele.username}</option>
             )
           })
         }
          </select>
-
+<div className="flex">
         {state.map((ele, id) => {
           return (
-            <div key={id}>
+            <div key={id} className="product">
               <b> Product: {ele.Product}</b>
               <p>Customer_Ratings: {ele.Customer_Ratings} </p>
               <p>
@@ -114,21 +122,22 @@ function FetchData() {
               <p>Price: {ele.Price}</p>
               <img src={ele.Image_Link} alt="" height="400px" width="400px" />
               <p>Product_Details: {ele.Product_Details}</p>
+              <div className="btns">
               <button
                 onClick={() => {
                   Delete(ele._id);
-                }}
-              >
+                }}>
                 Delete
               </button>
               <Link to={`/put/${ele._id}`}>
-                <button>Update</button>
+                <button className="update">Update</button>
               </Link>
+                </div>
             </div>
           );
         })}
+        </div>
       </div>
-      <button onClick={Logout}>Log Out</button>
     </div>
   );
 }

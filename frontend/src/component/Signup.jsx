@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {Link, useNavigate} from "react-router-dom"
 import axios from "axios";
+import "../App.css"
 
 function Signup(){
     const [username,setUsername] = useState("")
@@ -39,18 +40,18 @@ function Signup(){
         <div>
             <form onSubmit={Submit}>
             <div>
-            <input type="text" placeholder="Enter username" onChange={NameChange} required />
+            <input type="text" placeholder="Enter username" className="inpboxs" onChange={NameChange} required />
             </div>
             <div>
-                <input type="text" placeholder="Enter email" onChange={EmailChange} required/>
+                <input type="text" placeholder="Enter email" className="inpboxs" onChange={EmailChange} required/>
             </div>
             <div>
-                <input type="text" placeholder="Enter password" onChange={PasswordChange} required/>
+                <input type="text" placeholder="Enter password" className="inpboxs" onChange={PasswordChange} required/>
             </div>
-            <button>Sign up</button>
+            <button className="signup">Sign up</button>
             <p>If you already have an account kindly login</p>
             <Link to="/login">
-            <button>Log in </button>
+            <button className="signup">Log in </button>
             </Link>
             </form>
             <p>{err}</p>

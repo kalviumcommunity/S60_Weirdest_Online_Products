@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {useNavigate} from "react-router-dom"
 import axios from "axios";
+import "../App.css"
 
 function Login(){
     const [username,setUsername] = useState("")
@@ -44,12 +45,12 @@ function Login(){
     <div>
     <form onSubmit={Submit}>
             <div>
-                <input type="text" placeholder="Enter username" onChange={usernameChange} required/>
+                <input type="text" placeholder="Enter username" className="inpboxs" onChange={usernameChange} required/>
             </div>
             <div>
-                <input type="text" placeholder="Enter password" onChange={PasswordChange} required/>
+                <input type="text" placeholder="Enter password" className="inpboxs" onChange={PasswordChange} required/>
             </div>
-            <button>Login</button>
+            <button className="signup">Login</button>
             <p>{error}</p>
     </form>
     </div>

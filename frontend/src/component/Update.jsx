@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
-import {useNavigate,useParams} from "react-router-dom"
+import {useNavigate,useParams} from "react-router-dom";
+import "../App.css";
 
 function UpdateForm(){
 
@@ -37,7 +38,7 @@ function UpdateForm(){
       function ImageChange(event){
         setImage(event.target.value)
       }
-     
+
       function Submit(event){
          event.preventDefault();
          axios.put("http://localhost:3000/put/"+key,{Product,Customer_Ratings,Number_of_buyers_last_month,Price,Product_Details,Image_Link})
@@ -67,7 +68,7 @@ function UpdateForm(){
                 <input type="text" placeholder="Image link" onChange={ImageChange} className="inpbox"/>
             </div>
             <div>
-            <button>Update Data</button>
+            <button className="updates">Update Data</button>
             </div>
         </form>
        </div>
